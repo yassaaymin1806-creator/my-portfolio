@@ -1,8 +1,8 @@
-﻿/*
-  Portfolio behavior and editable data.
-  Main edit areas: PROFILE, PROJECTS, EXPERIENCE, contact settings,
-  and the local assistant knowledge rules.
-*/
+﻿/* ==========================================================
+   FM Portfolio — script.js
+   Contains: data + theme + navigation + visuals + projects +
+   certificates + contact + command palette + assistant + main
+   ========================================================== */
 
 /* ---------- DATA (edit these to customize your content) ---------- */
 /**
@@ -13,27 +13,27 @@
 const PROFILE = {
   name: "Yassa Ayman",
   initials: "YA",
-  role: "Data & AI Professional",
+  role: "AI Engineer & Software Developer",
   tagline: "Building Intelligent Digital Experiences.",
-  bio: "I build practical data and AI solutions, from machine learning models to automated workflows that solve real-world problems.",
+  bio: "I build intelligent and scalable digital experiences by combining AI, software engineering, and modern web technologies.",
   longBio:
     "I'm a software developer focused on the point where applied AI meets solid engineering. My work spans building LLM-backed features, structuring full-stack systems, and getting the fundamentals — architecture, data, testing — right before anything ships. I care about software that stays maintainable long after the demo is over.",
-  email: "yassaaymin1806@gmail.com",
-  location: "Cairo, Egypt",
+  email: "YOUR_EMAIL",
+  location: "YOUR_LOCATION",
   availability: "Available for opportunities",
-  education: "Computer Science — MTI",
-  focus: "Data Analysis, Machine Learning & AI Automation",
+  education: "Computer Science — YOUR_UNIVERSITY",
+  focus: "AI-integrated web applications & software architecture",
   social: {
-    github: "https://github.com/yassaaymin1806-creator",
-    linkedin: "https://www.linkedin.com/in/yassaayman",
-    email: "mailto:yassaaymin1806@gmail.com",
+    github: "YOUR_GITHUB_URL",
+    linkedin: "YOUR_LINKEDIN_URL",
+    email: "mailto:YOUR_EMAIL",
   },
-  resume: "resume/Yassa-Ayman-Resume.pdf",
+  resume: "resume/Fady-Mosa-Resume.pdf",
   stats: [
-    { value: "3", label: "Projects" },
-    { value: "9", label: "Certificates" },
-    { value: "15+", label: "Technologies" },
-    { value: "2", label: "Years Building" },
+    { value: "XX+", label: "Projects" },
+    { value: "XX", label: "Certificates" },
+    { value: "XX+", label: "Technologies" },
+    { value: "XX", label: "Years Building" },
   ],
   exploring: [
     "Generative AI",
@@ -137,100 +137,206 @@ const SKILLS = [
 /* Nodes for the interactive technology network visual (hero + skills section) */
 
 /**
- * Project details used by the Details modal and Portfolio Assistant.
- * Keep these entries aligned with the project cards in index.html.
+ * projects-data.js
+ * Add a new project to the portfolio by adding one object to this array.
+ * No HTML editing required — the Projects section renders from this file.
  */
 const PROJECTS = [
   {
     id: 1,
-    title: "Data Analysis Project",
-    category: "Data",
-    image: "assets/projects/data-analysis.svg",
+    title: "SmartHifz",
+    category: "AI",
+    image: "assets/projects/smarthifz.jpg",
     description:
-      "Cleaning, exploring, and visualizing data to turn raw datasets into useful insights.",
+      "AI-powered Quran memorization and progress tracking platform.",
     overview:
-      "A practical data analysis project focused on cleaning, exploring, and visualizing a real dataset to extract useful insights.",
+      "SmartHifz helps students memorize the Quran with structured goals, progress tracking, and an AI chatbot that answers questions and adapts guidance to the learner's pace.",
     problem:
-      "Raw datasets often contain missing values, inconsistent formats, and patterns that are difficult to interpret directly.",
+      "Manual memorization tracking is inconsistent and gives learners no structured feedback on their pace or weak spots.",
     solution:
-      "A structured analysis workflow that prepares the data, explores relationships, and communicates findings through clear visualizations.",
+      "A dashboard-driven platform that tracks memorization progress against personal goals, backed by an AI assistant for guidance and Q&A.",
     features: [
-      "Data cleaning",
-      "Exploratory data analysis",
-      "Statistical summaries",
-      "Data visualization",
+      "AI chatbot assistant",
+      "Progress tracking",
+      "Memorization goals",
+      "Authentication",
+      "Personal dashboard",
     ],
     architecture:
-      "Python-based analysis workflow using Pandas and NumPy for preparation, with Matplotlib and Seaborn for visualization.",
+      "React frontend communicating with a Node.js/Express API; AI features are served through a dedicated AI API layer, decoupled from core app logic.",
     challenges:
-      "Cleaning the dataset consistently and choosing visualizations that make the most important patterns easy to understand.",
+      "Designing a progress model flexible enough for different memorization plans, and keeping AI responses grounded and useful.",
     lessons:
-      "Good analysis starts with asking focused questions and validating the data before drawing conclusions.",
-    technologies: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn"],
+      "Structuring state around a clear progress schema early made every later feature — goals, streaks, dashboards — far easier to build.",
+    technologies: ["React", "Node.js", "Express", "AI APIs"],
     github: "",
     liveDemo: "",
-    year: "2025",
+    year: "2026",
     featured: true,
   },
   {
     id: 2,
-    title: "Gaming Addiction Prediction",
-    category: "AI",
-    image: "assets/projects/gaming-addiction.svg",
-    description: "Machine learning model predicting whether a person is addicted to gaming.",
+    title: "WorkerHub",
+    category: "Full Stack",
+    image: "assets/projects/workerhub.jpg",
+    description: "Platform connecting skilled workers with clients.",
     overview:
-      "A machine learning model that predicts whether a person is at risk of gaming addiction based on behavioral and usage data.",
+      "WorkerHub is a two-sided marketplace where clients can find, filter, and book skilled workers, with a full admin dashboard for platform oversight.",
     problem:
-      "Gaming behavior can be difficult to assess consistently without analyzing multiple personal and usage factors together.",
+      "Finding verified, skilled workers locally is fragmented and mostly informal, with no structured way to compare or book them.",
     solution:
-      "A supervised learning workflow that preprocesses the data, trains classification models, and evaluates prediction performance.",
+      "A searchable, filterable directory of worker profiles with a booking-request flow, bilingual support, and an admin layer for managing the platform.",
     features: [
-      "Data preprocessing",
-      "Feature preparation",
-      "Classification model",
-      "Model evaluation",
+      "Worker profiles",
+      "Search & filtering",
+      "Booking requests",
+      "Admin dashboard",
+      "Authentication",
+      "Arabic / English support",
     ],
     architecture:
-      "Python data pipeline using Pandas and NumPy for preprocessing and Scikit-learn for model training and evaluation.",
+      "React frontend on Supabase for auth, database, and storage; i18next drives full bilingual support; Framer Motion handles interface motion.",
     challenges:
-      "Selecting useful features, handling preprocessing correctly, and evaluating the model without relying on accuracy alone.",
+      "Designing a data model that works cleanly in both languages and handling right-to-left layout without duplicating components.",
     lessons:
-      "A reliable prediction model depends on clean features, meaningful evaluation, and understanding the problem behind the labels.",
-    technologies: ["Python", "Pandas", "Scikit-learn", "Classification"],
+      "Internationalization is far easier when it's planned into the component structure from day one rather than retrofitted.",
+    technologies: ["React", "Supabase", "JavaScript", "Framer Motion", "i18next"],
     github: "",
     liveDemo: "",
     year: "2026",
     featured: true,
   },
   {
-  github: "https://github.com/yassaaymin1806-creator/gaming-addiction",
-    title: "AI CV Screening Workflow",
-    category: "Automation",
-    image: "Photo/Photo/n8n.png",
-    description: "n8n workflow that analyzes CVs, evaluates candidates, and emails the result.",
+    id: 3,
+    title: "Grand Hotel",
+    category: "Software Engineering",
+    image: "assets/projects/grand-hotel.jpg",
+    description: "Hotel booking and management system.",
     overview:
-      "An n8n automation that analyzes CVs, gives candidates an evaluation, and emails them an acceptance or rejection result.",
+      "A full booking and management system for a hotel, covering both the guest-facing booking flow and the admin-side management tools.",
     problem:
-      "Reviewing CVs manually takes time and makes it difficult to apply the same evaluation criteria to every candidate.",
+      "Small hotel operations often rely on manual booking processes with no unified system for clients and administrators.",
     solution:
-      "An automated workflow that receives a CV, extracts and analyzes its content, generates an evaluation, and sends the decision by email.",
+      "A Flask-based system separating client registration and booking from an admin management layer, backed by a relational data model.",
     features: [
-      "CV text extraction",
-      "AI candidate evaluation",
-      "Acceptance decision",
-      "Automated email response",
+      "Client registration",
+      "Admin registration",
+      "Authentication",
+      "Room booking",
+      "Hotel management",
     ],
     architecture:
-      "n8n workflow connecting CV input, document parsing, an AI evaluation step, decision logic, and Gmail email delivery.",
+      "Server-rendered Flask application with a Python backend and a relational database, following a classic MVC structure.",
     challenges:
-      "Creating a consistent evaluation prompt and making sure every candidate receives a clear result through the correct email address.",
+      "Modeling room availability and booking conflicts correctly, and separating admin permissions cleanly from client access.",
     lessons:
-      "Automation is most useful when each step has a clear input, output, and fallback for unexpected data.",
-    technologies: ["n8n", "AI Automation", "CV Analysis", "Gmail"],
+      "Getting the data model and access rules right up front avoided a large class of bugs later in the booking flow.",
+    technologies: ["HTML", "CSS", "JavaScript", "Flask", "Python"],
     github: "",
     liveDemo: "",
     year: "2026",
     featured: false,
+  },
+];
+
+/**
+ * certificates-data.js
+ * No certificates have been added yet. Add one by pushing an object with
+ * this shape into the CERTIFICATES array — the gallery renders automatically.
+ *
+ * {
+ *   id: 1,
+ *   title: "Certificate Name",
+ *   organization: "Organization",
+ *   date: "2026",
+ *   category: "AI", // Academic | AI | Programming | Cybersecurity | Web Development | Data
+ *   image: "assets/certificates/certificate.jpg",
+ *   verificationUrl: "",
+ *   description: ""
+ * }
+ */
+const CERTIFICATES = [
+  // ============================================================
+  //  HOW TO ADD A CERTIFICATE — just fill in the fields below:
+  //
+  //  id           → unique number (1, 2, 3 …)
+  //  title        → name of the certificate
+  //  organization → who issued it (Coursera, Google, etc.)
+  //  date         → year or "Month Year"
+  //  category     → one of: Academic | AI | Programming |
+  //                  Cybersecurity | Web Development | Data
+  //  image        → put your certificate image inside
+  //                  assets/certificates/ and write the path
+  //  verificationUrl → link to verify online (or leave "")
+  //  description  → short description (shown in viewer)
+  // ============================================================
+
+  {
+    id: 1,
+    title: "اسم الشهادة هنا",
+    organization: "اسم الجهة المانحة",
+    date: "2024",
+    category: "AI",
+    image: "assets/certificates/cert-01.jpg",
+    verificationUrl: "",
+    description: "وصف قصير للشهادة وما تغطيه.",
+  },
+  {
+    id: 2,
+    title: "اسم الشهادة هنا",
+    organization: "اسم الجهة المانحة",
+    date: "2024",
+    category: "Programming",
+    image: "assets/certificates/cert-02.jpg",
+    verificationUrl: "",
+    description: "وصف قصير للشهادة وما تغطيه.",
+  },
+  {
+    id: 3,
+    title: "اسم الشهادة هنا",
+    organization: "اسم الجهة المانحة",
+    date: "2024",
+    category: "Web Development",
+    image: "assets/certificates/cert-03.jpg",
+    verificationUrl: "",
+    description: "وصف قصير للشهادة وما تغطيه.",
+  },
+  {
+    id: 4,
+    title: "اسم الشهادة هنا",
+    organization: "اسم الجهة المانحة",
+    date: "2023",
+    category: "Cybersecurity",
+    image: "assets/certificates/cert-04.jpg",
+    verificationUrl: "",
+    description: "وصف قصير للشهادة وما تغطيه.",
+  },
+  {
+    id: 5,
+    title: "اسم الشهادة هنا",
+    organization: "اسم الجهة المانحة",
+    date: "2023",
+    category: "Data",
+    image: "assets/certificates/cert-05.jpg",
+    verificationUrl: "",
+    description: "وصف قصير للشهادة وما تغطيه.",
+  },
+ 
+];
+
+/**
+ * achievements-data.js (same file, kept together since both are small)
+ * Timeline / award-style achievements. Add real entries only.
+ */
+const ACHIEVEMENTS = [
+  {
+    id: "academic-excellence",
+    title: "Academic Excellence Award",
+    organization: "YOUR_UNIVERSITY",
+    date: "YOUR_DATE",
+    category: "Academic",
+    featured: true,
+    description: "PLACEHOLDER — replace with the real award description.",
   },
 ];
 
@@ -241,40 +347,45 @@ const PROJECTS = [
  */
 const EXPERIENCE = [
   {
-    date: "Oct 2024 — Jun 2028",
+    date: "YOUR_DATES",
     title: "Computer Science Education",
-    organization: "MTI University",
+    organization: "YOUR_UNIVERSITY",
     description:
-      "Computer Science studies with a focus on programming, data, machine learning, and software development.",
-    skills: [ "C++", "Java","OOP","Data Structures"],
+      "PLACEHOLDER — describe your degree, focus areas and relevant coursework.",
+    skills: ["Software Engineering", "Algorithms", "System Design"],
   },
   {
-    date: "31 Aug 2025 — 25 Sep 2025",
-    title: "Programming using Python",
-    organization: "NTI — National Telecommunication Institute",
+    date: "YOUR_DATES",
+    title: "React Frontend Training",
+    organization: "YOUR_PROGRAM",
     description:
-      "Comprehensive training in Python fundamentals, OOP, and data structures with hands-on projects.",
-    skills: ["Python", "OOP", "Data Structures", "NumPy", "Pandas"],
+      "PLACEHOLDER — describe the training program and what it covered.",
+    skills: ["React", "JavaScript", "Responsive Design"],
   },
   {
-    date: "28 Jun 2026 — 23 Jul 2026",
-    title: "Machine Learning Training",
-    organization: "NTI — National Telecommunication Institute",
+    date: "YOUR_DATES",
+    title: "AI & Software Engineering Projects",
+    organization: "Independent / Academic",
     description:
-      "Hands-on training covering data cleaning, EDA, visualization, preprocessing, machine learning algorithms, model evaluation, and deployment.",
-    skills: ["Data Cleaning", "EDA", "Scikit-learn", "Model Evaluation", "Deployment"],
+      "Designed and built SmartHifz, WorkerHub and Grand Hotel — spanning AI integration, full-stack systems and structured software engineering.",
+    skills: ["AI APIs", "Full-Stack Development", "System Analysis"],
   },
   {
-    date: "19 Jul 2026 — 30 Jul 2026",
-    title: "AI & Automation Training",
-    organization: "Next",
+    date: "YOUR_DATES",
+    title: "Certifications",
+    organization: "Various",
     description:
-      "Practical training focused on workflow automation and AI automation concepts.",
-    skills: ["n8n","AI Agents","Workflow Automation","RAG"],
+      "PLACEHOLDER — list certification track once certificates are added.",
+    skills: [],
   },
 ];
 
-
+const EDUCATION = {
+  degree: "Computer Science",
+  institution: "YOUR_UNIVERSITY",
+  focus: "AI-integrated software systems & web engineering",
+  achievements: ["Academic Excellence Award — YOUR_DATE"],
+};
 
 /* ---------- APP LOGIC ---------- */
 /**
@@ -593,12 +704,8 @@ const EXPERIENCE = [
     // Filter buttons
     document.querySelectorAll("[data-project-filter]").forEach(btn => {
       btn.addEventListener("click", () => {
-        document.querySelectorAll("[data-project-filter]").forEach((b) => {
-          b.classList.remove("active");
-          b.setAttribute("aria-selected", "false");
-        });
+        document.querySelectorAll("[data-project-filter]").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
-        btn.setAttribute("aria-selected", "true");
         activeFilter = btn.dataset.projectFilter;
         getCards().forEach(c => { c.classList.remove("show"); c.style.display = ""; });
         applyFilter();
@@ -756,11 +863,12 @@ const EXPERIENCE = [
 })();
 
 /**
- * contact.js — client-side validation and Gmail compose integration.
+ * contact.js — client-side validation and loading/success/error states
+ * for the contact form. No backend is connected: see the README for how
+ * to wire this up to a real email service.
  */
 (function () {
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const RECIPIENT_EMAIL = "yassaaymin1806@gmail.com";
 
   function validateField(field) {
     const group = field.closest(".form-group");
@@ -805,28 +913,19 @@ const EXPERIENCE = [
         return;
       }
 
-      const name = form.elements.name.value.trim();
-      const senderEmail = form.elements.email.value.trim();
-      const subject = form.elements.subject.value.trim();
-      const message = form.elements.message.value.trim();
-      const gmailUrl = new URL("https://mail.google.com/mail/");
-      gmailUrl.searchParams.set("view", "cm");
-      gmailUrl.searchParams.set("fs", "1");
-      gmailUrl.searchParams.set("to", RECIPIENT_EMAIL);
-      gmailUrl.searchParams.set("su", subject);
-      gmailUrl.searchParams.set(
-        "body",
-        `Name: ${name}\nEmail: ${senderEmail}\n\n${message}`
-      );
+      submitBtn.classList.add("loading");
+      submitBtn.disabled = true;
+      statusEl.className = "form-status";
 
-      const gmailWindow = window.open(gmailUrl.toString(), "_blank", "noopener,noreferrer");
-      if (!gmailWindow) {
-        setStatus(statusEl, "error", "Please allow pop-ups to open Gmail and send your message.");
-        return;
-      }
-
-      setStatus(statusEl, "success", "Gmail opened with your message ready to send.");
-      form.reset();
+      // No backend/email service is connected — this simulates the request
+      // so the interface behaves correctly once one is. See README section
+      // "Connect a real contact form" to wire this to an actual service.
+      setTimeout(() => {
+        submitBtn.classList.remove("loading");
+        submitBtn.disabled = false;
+        setStatus(statusEl, "success", "Message sent successfully.");
+        form.reset();
+      }, 1100);
     });
   });
 })();
@@ -960,7 +1059,7 @@ const EXPERIENCE = [
     const techList = SKILLS.flatMap((s) => s.skills).slice(0, 12).join(", ");
     return [
       {
-        test: /who (is|are) (yassa|you)|about (you|yassa)/i,
+        test: /who (is|are) (fady|you)|about (you|fady)/i,
         answer: () =>
           `${PROFILE.name} is a ${PROFILE.role}. ${PROFILE.bio}`,
       },
@@ -975,12 +1074,10 @@ const EXPERIENCE = [
       },
       {
         test: /certificat/i,
-        answer: () => {
-          const certificateCount = document.querySelectorAll("[data-cert-grid] article.cert-card").length;
-          return certificateCount
-            ? `There are ${certificateCount} certificates listed — check the Certificates section for details.`
-            : `No certificates have been added yet — check back soon.`;
-        },
+        answer: () =>
+          CERTIFICATES.length
+            ? `There are ${CERTIFICATES.length} certificates listed — check the Certificates section for details.`
+            : `No certificates have been added yet — check back soon.`,
       },
       {
         test: /contact|email|reach|hire/i,
@@ -1003,11 +1100,11 @@ const EXPERIENCE = [
     const kb = knowledgeBase();
     const hit = kb.find((entry) => entry.test.test(question));
     if (hit) return hit.answer();
-    return "I can answer questions about Yassa's projects, technologies, certificates, experience, or how to get in touch — try one of the suggestions below.";
+    return "I can answer questions about Fady's projects, technologies, certificates, experience, or how to get in touch — try one of the suggestions below.";
   }
 
   const SUGGESTIONS = [
-    "Who is Yassa?",
+    "Who is Fady?",
     "Show me his projects.",
     "What technologies does he use?",
     "How can I contact him?",
