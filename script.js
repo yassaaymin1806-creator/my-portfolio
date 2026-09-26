@@ -965,7 +965,12 @@ const EXPERIENCE = [
 (function () {
   function knowledgeBase() {
     const projectNames = PROJECTS.map((p) => p.title).join(", ");
-    const techList = SKILLS.flatMap((s) => s.skills).slice(0, 12).join(", ");
+    const displayedSkills = Array.from(
+      document.querySelectorAll("#skills .skill-tag"),
+      (tag) => tag.textContent.trim(),
+    ).filter(Boolean);
+    const projectTechnologies = PROJECTS.flatMap((project) => project.technologies);
+    const techList = [...new Set([...displayedSkills, ...projectTechnologies])].join(", ");
     return [
       {
         test: /who (is|are) (yassa|you)|about (you|yassa)/i,
