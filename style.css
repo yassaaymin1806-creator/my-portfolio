@@ -907,6 +907,7 @@ body.cursor-active, body.cursor-active a, body.cursor-active button { cursor: no
   line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1796,7 +1797,7 @@ body.cursor-active, body.cursor-active a, body.cursor-active button { cursor: no
   .cfm-submit { width: 100%; }
 }
 
-/* ---- Certificate How-To Guide Banner ---- */
+/* ---- Optional certificate guide banner ---- */
 .cert-howto-banner {
   display: flex;
   align-items: center;
@@ -1914,6 +1915,11 @@ body.cursor-active, body.cursor-active a, body.cursor-active button { cursor: no
 .project-card.show { opacity: 1; transform: translateY(0); }
 .project-card:hover { transform: translateY(-5px); border-color: var(--accent-line); box-shadow: 0 16px 48px rgba(201,138,75,0.1); }
 .proj-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; transition: transform 0.4s var(--ease); }
+.proj-img.missing {
+  min-height: 180px;
+  background: linear-gradient(135deg, var(--bg-elevated), var(--accent-soft));
+  opacity: 0;
+}
 .project-card:hover .proj-img { transform: scale(1.03); }
 .proj-body { padding: 20px; }
 .proj-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
@@ -1924,8 +1930,22 @@ body.cursor-active, body.cursor-active a, body.cursor-active button { cursor: no
 .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
 .proj-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 .btn-sm { padding: 7px 14px; font-size: 0.8rem; }
+#projects-html-grid a.proj-github[href=""],
+#projects-html-grid a.proj-demo[href=""],
+#projects-html-grid a.proj-linkedin[href=""] { display: none; }
 @media (max-width: 1024px) { #projects-html-grid { grid-template-columns: repeat(2,1fr); } }
 @media (max-width: 640px)  { #projects-html-grid { grid-template-columns: 1fr; } }
+
+#certificates .cert-card[data-title="AWS Academy Graduate - Data Engineering - Training Badge"] { order: 1; }
+#certificates .cert-card[data-title="Getting Started with Deep Learning"] { order: 2; }
+#certificates .cert-card[data-title="Machine Learning"] { order: 3; }
+#certificates .cert-card[data-title="Programming Using Python"] { order: 4; }
+#certificates .cert-card[data-title="Generative AI Tools CSW"] { order: 5; }
+#certificates .cert-card[data-title="System Analysis Using AI CSW"] { order: 6; }
+#certificates .cert-card[data-title="Artificial Intelligence Ambassadors Program"] { order: 7; }
+#certificates .cert-card[data-title="Build with AI: Masr Edition"] { order: 8; }
+
+#certificates .cert-edit-badge { display: none; }
 
 /* ── HTML-driven Capabilities ──────────────────────────────── */
 .capability-grid {
